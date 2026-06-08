@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Universe</title>
+<style>
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:linear-gradient(180deg,#091126,#21184b,#44306f);
+color:white;
+text-align:center;
+overflow:hidden;
+}
+.stars{
+position:fixed;
+inset:0;
+background-image:
+radial-gradient(white 1px, transparent 1px),
+radial-gradient(white 1px, transparent 1px);
+background-size:80px 80px,120px 120px;
+opacity:.3;
+z-index:-1;
+}
+.container{max-width:850px;margin:auto;padding:40px 20px;}
+.card{
+background:rgba(255,255,255,.12);
+padding:28px;
+border-radius:24px;
+margin-top:25px;
+backdrop-filter:blur(5px);
+}
+button{
+padding:12px 22px;
+border:none;
+border-radius:25px;
+margin:10px;
+font-size:1rem;
+cursor:pointer;
+}
+.start{background:#ffd8ee;}
+.yes{background:#c8ffd3;}
+.no{background:#ffe2e2;position:relative;}
+.hidden{display:none;}
+.fade{animation:fade .6s;}
+@keyframes fade{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
+}
+</style>
+</head>
+<body>
+
+<div class="stars"></div>
+
+<div class="container">
+<h1>Happy Anniversary, Fahad ✨</h1>
+
+<p>
+You once told me your dream is to go to space.<br>
+So until we reach the stars, can we keep exploring life together? 🌙💙
+</p>
+
+<p>
+<b>Days of choosing each other ❤️</b><br>
+Since 14 June 2024 • 7:30<br>
+<span id="days"></span>
+</p>
+
+<button class="start" onclick="startUniverse()">🚀 Start Our Universe</button>
+
+<div id="questionBox" class="hidden"></div>
+
+<div id="ending" class="hidden">
+<h2>🌌</h2>
+<p>
+If life is one long journey through the universe,<br>
+I hope every galaxy, every dream, and every ordinary day still leads back to us.<br><br>
+<b>Mission accepted: partner for all my adventures, on Earth and beyond ❤️</b>
+</p>
+</div>
+
+</div>
+
+<script>
+const questions = [
+"Will you take me on cute dates? 💕",
+"Will you buy me flowers sometimes? 🌷",
+"Will you roam the world with me? 🌍",
+"Will you always take care of me? 🫶",
+"Will you make memories with me? 📸",
+"Will you keep choosing me every day? ❤️",
+"Will you grow old with me? 👵👴",
+"Will you watch stars with me at 2 AM? ✨",
+"Will you laugh at my bad jokes forever? 😄",
+"Will you continue building our tiny universe together? 🚀",
+"Will you collect little moments with me forever? 🤍"
+];
+
+let current = 0;
+
+function showQuestion(){
+const box = document.getElementById("questionBox");
+
+if(current >= questions.length){
+box.classList.add("hidden");
+document.getElementById("ending").classList.remove("hidden");
+return;
+}
+
+box.classList.remove("hidden");
+box.className = "card fade";
+
+box.innerHTML = `
+<h2>${questions[current]}</h2>
+<button class="yes" onclick="nextQuestion()">Yes 💖</button>
+<button class="no" onmouseover="runAway(this)" ontouchstart="runAway(this)">No</button>
+`;
+}
+
+function nextQuestion(){
+current++;
+showQuestion();
+}
+
+function runAway(btn){
+btn.style.transform = `translate(${Math.random()*180-90}px,${Math.random()*120-60}px)`;
+}
+
+function startUniverse(){
+current = 0;
+showQuestion();
+}
+
+function updateDays(){
+const start = new Date("2024-06-14T19:30:00");
+const now = new Date();
+const diff = now-start;
+const days = Math.floor(diff/(1000*60*60*24));
+document.getElementById("days").innerText = days + " days and counting ✨";
+}
+
+updateDays();
+</script>
+
+</body>
+</html>
